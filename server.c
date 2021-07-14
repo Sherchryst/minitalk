@@ -6,7 +6,7 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 03:16:24 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 19:50:40 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 21:12:10 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,7 @@
 #include <stdio.h>
 
 void
-	ft_putnbr_fd(int fd, int nbr)
-{
-	unsigned int	n;
-
-	if (nbr < 0)
-	{
-		ft_putchar_fd(fd, '-');
-		n = nbr * -1;
-	}
-	else
-		n = nbr;
-	if (n >= 10)
-	{
-		ft_putnbr_fd(fd, n / 10);
-		ft_putchar_fd(fd, n % 10 + '0');
-	}
-	else
-		ft_putchar_fd(fd, n + '0');
-}
-
-void	recv_bit(int bit)
+	recv_bit(int bit)
 {
 	static int	size;
 	static int	byte;

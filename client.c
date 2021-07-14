@@ -6,32 +6,36 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 01:54:54 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 19:51:33 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 21:09:48 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	send_bit(int pid, char *msg)
+void
+	send_bit(int pid, char *msg)
 {
-	int	bit;
-	int	j;
+	int		bit;
+	size_t	j;
+	size_t	len;
 
 	j = 0;
-	while (msg[j])
+	len = ft_strlen(msg);
+	while (j <= len)
 	{
 		bit = 7;
 		while (bit >= 0)
 		{
-			usleep(50);
 			if ((msg[j] >> bit) & 1)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
 			bit--;
+			usleep(60);
 		}
 		j++;
 	}
+	ft_putstr_fd(1, "Message sended!\n");
 }
 
 int
