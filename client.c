@@ -6,7 +6,7 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 01:54:54 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 04:03:30 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 17:56:55 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ void
 	int		bit;
 
 	i = 0;
-	while(i <=len)
+	while (i <= len)
 	{
 		bit = 0;
-		while(bit < 7)
+		while (bit < 7)
 		{
-			if((message[i] >> bit) & 1)
+			if ((message[i] >> bit) & 1)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
 			bit++;
-			usleep(60);
+			usleep(600);
 		}
 		i++;
 	}
@@ -40,7 +40,7 @@ int
 {
 	int	pid;
 
-	if(ac == 3)
+	if (ac == 3)
 	{
 		pid = get_pid(av[1]);
 		send_bit(pid, av[2], ft_strlen(av[2]));

@@ -6,18 +6,19 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 03:16:24 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 04:36:33 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 17:56:06 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <stdio.h>
 
 void
 	ft_putnbr_fd(int fd, int nbr)
 {
 	unsigned int	n;
 
-	if(nbr < 0)
+	if (nbr < 0)
 	{
 		ft_putchar_fd(fd, '-');
 		n = nbr * -1;
@@ -43,9 +44,12 @@ void
 	if (size == 7)
 	{
 		ft_putchar_fd(1, byte);
+		if (byte == 0)
+			ft_putchar_fd(1, '\n');
 		size = 0;
 		byte = 0;
 	}
+	size++;
 }
 
 int
@@ -54,19 +58,19 @@ int
 	pid_t	pid;
 
 	(void)av;
-	if(ac != 1)
+	signal(SIGUSR1, recv_bit);
+	signal(SIGUSR2, recv_bit);
+	if (ac != 1)
 		ft_putstr_fd(2, "usage : ./server\n");
 	else
 	{
 		pid = getpid();
 		ft_putnbr_fd(1, pid);
 		ft_putchar_fd(1, '\n');
-		while(123)
+		while (123)
 		{
-			signal(SIGUSR1, recv_bit);
-			signal(SIGUSR2, recv_bit);
+			pause();
 		}
 	}
 	return (0);
 }
-
