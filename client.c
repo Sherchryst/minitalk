@@ -6,32 +6,31 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 01:54:54 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 17:56:55 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 19:51:33 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void
-	send_bit(int pid, char *message, size_t len)
+void	send_bit(int pid, char *msg)
 {
-	size_t	i;
-	int		bit;
+	int	bit;
+	int	j;
 
-	i = 0;
-	while (i <= len)
+	j = 0;
+	while (msg[j])
 	{
-		bit = 0;
-		while (bit < 7)
+		bit = 7;
+		while (bit >= 0)
 		{
-			if ((message[i] >> bit) & 1)
-				kill(pid, SIGUSR2);
-			else
+			usleep(50);
+			if ((msg[j] >> bit) & 1)
 				kill(pid, SIGUSR1);
-			bit++;
-			usleep(600);
+			else
+				kill(pid, SIGUSR2);
+			bit--;
 		}
-		i++;
+		j++;
 	}
 }
 
@@ -43,7 +42,7 @@ int
 	if (ac == 3)
 	{
 		pid = get_pid(av[1]);
-		send_bit(pid, av[2], ft_strlen(av[2]));
+		send_bit(pid, av[2]);
 	}
 	else
 		ft_putstr_fd(2, "usage : ./client [PID] [MESSAGE]\n");

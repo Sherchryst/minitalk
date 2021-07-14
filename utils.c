@@ -6,7 +6,7 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 02:10:44 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 17:57:48 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 19:50:17 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,4 @@ void
 	ft_putstr_fd(int fd, char *str)
 {
 	write(fd, str, ft_strlen(str));
-}
-
-void
-	*ft_memset(void *buf, int c, size_t len)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < len)
-	{
-		((unsigned char *)buf)[i] = (unsigned char)c;
-		i++;
-	}
-	return (buf);
 }

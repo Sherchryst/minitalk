@@ -6,7 +6,7 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 03:16:24 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 17:56:06 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 19:50:40 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ void
 		ft_putchar_fd(fd, n + '0');
 }
 
-void
-	recv_bit(int bit)
+void	recv_bit(int bit)
 {
-	static size_t	size = 0;
-	static int		byte;
+	static int	size;
+	static int	byte;
 
-	byte += ((bit & 1) << size);
-	if (size == 7)
+	if (bit == SIGUSR1)
+		byte += 1 << (7 - size);
+	size++;
+	if (size == 8)
 	{
 		ft_putchar_fd(1, byte);
 		if (byte == 0)
@@ -49,7 +50,6 @@ void
 		size = 0;
 		byte = 0;
 	}
-	size++;
 }
 
 int
