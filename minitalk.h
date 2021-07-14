@@ -6,7 +6,7 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 02:19:26 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 03:26:03 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 04:06:10 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 1023
+# define BUFF_SIZE 64
 
 int		get_pid(char *pid);
 size_t	ft_strlen(char *str);
