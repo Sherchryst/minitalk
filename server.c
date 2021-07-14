@@ -6,7 +6,7 @@
 /*   By: sgah <sgah@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 03:16:24 by sgah              #+#    #+#             */
-/*   Updated: 2021/07/14 04:02:51 by sgah             ###   ########.fr       */
+/*   Updated: 2021/07/14 04:36:33 by sgah             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,15 @@ void
 void
 	recv_bit(int bit)
 {
-	static size_t	i = 0;
 	static size_t	size = 0;
 	static int		byte;
-	static char		buf[BUFF_SIZE];
 
 	byte += ((bit & 1) << size);
 	if (size == 7)
 	{
-		buf[i++] = byte;
+		ft_putchar_fd(1, byte);
 		size = 0;
 		byte = 0;
-	}
-	if (i == BUFF_SIZE - 1)
-	{
-		buf[i] = 0;
-		write(1, buf, BUFF_SIZE);
-		ft_memset(buf, 0, BUFF_SIZE - 1);
 	}
 }
 
