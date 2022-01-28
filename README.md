@@ -1,7 +1,7 @@
 # MINITALK 
 
 ## Introduction
->The objective of this project is for you to create a communication program, it will be able to send messages from a client to a server.
+>The objective of this project is to create a communication program, it will be able to send messages from a client to a server.
 
 ## Objectives 
  * You must create a communication program in the form of a client and server.
